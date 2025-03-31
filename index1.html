@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Películas Dictadura Militar</title>
+  <link rel="stylesheet" href="style1.css"> 
+  
+</head>
+<body>
+
+  <div class="container">
+    <h1>La dictadura en el cine</h1>
+    <p><strong>Selecciona una película para ver:</strong></p>
+
+    <div class="movie-list">
+      <select id="movieSelector">
+        <option value="https://ok.ru/video/3184708618903">Garage Olimpo</option>
+        <option value="https://ok.ru/video/3379044747802">La noche de los lápices</option>
+        <option value="https://ok.ru/video/6909177629268">La historia oficial</option>
+        <option value="https://ok.ru/video/6470988663485">Un muro de silencio</option>
+        <option value="https://ok.ru/video/4698434374234">Operación México, un pacto de amor</option>
+        <option value="https://ok.ru/video/3446574156306">La amiga</option>
+        <option value="https://ok.ru/video/3308729862886">El censor</option>
+        <option value="https://ok.ru/video/5022673996312">Infancia clandestina</option>
+        <option value="https://ok.ru/video/1699686255257">Sinfonía para Ana</option>
+        <option value="https://ok.ru/video/3848782678618">Andrés no quiere dormir la siesta</option>
+        <option value="https://ok.ru/video/1333481245274">El premio</option>
+        <option value="https://ok.ru/video/5291381754392">Kamtchatka</option>
+        <option value="https://ok.ru/video/6946765540056">Argentina 1985</option>
+        <option value="https://ok.ru/video/6466732821181">Hermana</option>
+        <option value="https://ok.ru/video/3767448832755">Moira</option>
+        <option value="https://ok.ru/video/3416589208121">El exilio de Gardel</option>
+        <option value="https://ok.ru/video/5268605373097">Pueblo chico</option>
+        <option value="https://ok.ru/video/2043989920401">Sur</option>
+        <option value="https://ok.ru/video/1380774120026">Eva y Lola</option>
+        <option value="https://ok.ru/video/4450873051801">Los días de Junio</option>
+        <option value="https://play.cine.ar/INCAA/produccion/759">M</option>
+        <option value="https://play.cine.ar/INCAA/produccion/7526">Pañuelos para la historia</option>
+        <option value="https://play.cine.ar/INCAA/produccion/8492">Sonata en si menor</option>
+        <option value="https://play.cine.ar/INCAA/produccion/9114">Bemolución</option>
+        <option value="https://play.cine.ar/INCAA/produccion/7710">Se va a acabar</option>
+        <option value="https://play.cine.ar/INCAA/produccion/7408">Que no daría yo por la memoria</option>
+        <option value="https://play.cine.ar/INCAA/produccion/5467">70 y Pico</option>
+        <option value="https://play.cine.ar/INCAA/produccion/7983">Los prohibidos</option>
+        <option value="https://play.cine.ar/INCAA/produccion/7983">Historias cotidianas</option>
+        <option value="https://play.cine.ar/INCAA/produccion/7274">Ivone</option>
+        <option value="https://play.cine.ar/INCAA/produccion/6148">La casa de Arguello</option>
+        <option value="https://play.cine.ar/INCAA/produccion/8077">Jorge Novak</option>
+        <option value="https://play.cine.ar/INCAA/produccion/5241">Dejá la luz prendida</option>
+        <option value="https://play.cine.ar/INCAA/produccion/8972">Octubre 23: una historia de estudiantes secundarios</option>
+        <option value="https://play.cine.ar/INCAA/produccion/8031">Condenados</option>
+        <option value="https://www.youtube.com/watch?v=GghHdZmWtYs">La masacre de San Patricio</option>
+        <option value="https://www.youtube.com/watch?v=SYgo1hfwaO0&t=359s">Flores de Septiembre</option>
+        <option value="https://www.youtube.com/watch?v=9JFZSssS98U">Ojos azules</option>
+        <option value="https://www.youtube.com/watch?v=LBJqxJOam1k">El almuerzo</option>
+      </select>
+    </div>
+
+    <div class="video-player">
+      <iframe id="videoPlayer" src="https://www.youtube.com/embed/GghHdZmWtYs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+   document.getElementById('movieSelector').addEventListener('change', function() {
+  var selectedVideo = this.value;
+  var videoPlayer = document.getElementById('videoPlayer');
+
+  // Detect the type of video URL
+  if (selectedVideo.includes("youtube.com")) {
+    // Extract YouTube video ID and embed it
+    var videoId = selectedVideo.split('v=')[1].split('&')[0];
+    videoPlayer.src = "https://www.youtube.com/embed/" + videoId;
+  } else if (selectedVideo.includes("cine.ar")) {
+    // If the URL is from cine.ar, directly use the URL
+    videoPlayer.src = selectedVideo;
+  } else if (selectedVideo.includes("ok.ru")) {
+    // If the URL is from ok.ru, embed using ok.ru's embed format
+    var videoId = selectedVideo.split("/")[4]; // Extrae el ID del video
+    videoPlayer.src = "https://ok.ru/videoembed/" + videoId;
+  } else {
+    // Default case for unknown URLs
+    videoPlayer.src = selectedVideo;
+  }
+});
+
+  </script>
+
+</body>
+</html>
